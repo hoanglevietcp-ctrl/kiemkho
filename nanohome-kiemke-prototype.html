@@ -42,12 +42,18 @@ header.app{background:rgba(15,15,16,.92);backdrop-filter:saturate(180%) blur(12p
 .btn.yellow{background:var(--accent);color:#fff}
 .btn.outline{background:#fff;color:#111214;border:1.5px solid #dedee0}
 .btn.gray{background:#efeff0;color:#111214}
-.btn.danger{background:#fff;color:var(--bad);border:1.5px solid #e3c9c5}
+.btn.danger{background:var(--bad);color:#fff;border:1.5px solid var(--bad)}
+.btn.continue{background:#1976d2;color:#fff;border:1.5px solid #1976d2}
 .btn:disabled{opacity:.35}
 .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;margin-top:12px;box-shadow:var(--shadow-sm)}
 .ctitle{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.3px;text-transform:none}
 .ctitle .ico{width:28px;height:28px;border-radius:9px;background:#f1f1f2;color:#111214;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.ctitle .link{margin-left:auto;font-size:12px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--muted);cursor:pointer}
+.ctitle .link{margin:-8px -8px -8px auto;min-height:40px;padding:8px;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:650;letter-spacing:0;text-transform:none;color:var(--muted);cursor:pointer;white-space:nowrap;border-radius:10px}
+.ctitle .link::after{content:'›';width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#f1f1f2;color:#55565b;font-size:19px;font-weight:500;line-height:1}
+.ctitle .link:active{background:#f1f1f2}
+.detail-back{min-height:40px;margin:-8px 0 4px -8px;padding:8px;display:inline-flex;align-items:center;gap:6px;border:0;border-radius:10px;background:transparent;color:var(--muted);font-size:12px;font-weight:650;cursor:pointer;white-space:nowrap}
+.detail-back::before{content:'‹';width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#f1f1f2;color:#55565b;font-size:19px;font-weight:500;line-height:1}
+.detail-back:active{background:#f1f1f2}
 label{font-size:11px;font-weight:600;color:var(--muted);display:block;margin:12px 0 5px;text-transform:none;letter-spacing:.2px}
 input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid var(--border);border-radius:12px;font-size:16px;background:#fff;transition:border-color .15s ease}
 input:focus,select:focus,textarea:focus{outline:none;border-color:#111}
@@ -92,6 +98,7 @@ textarea{min-height:76px;resize:vertical;line-height:1.35}
 .ppanel .thumb{width:74px;height:74px;border:1px solid var(--border);border-radius:14px;background:#f4f4f5;display:flex;align-items:center;justify-content:center;font-size:38px;flex-shrink:0}
 .ppanel .nm{font-size:17px;font-weight:800;line-height:1.25}
 .ppanel .sku{font-size:12px;color:var(--muted);margin-top:3px}
+.ppanel .specs{font-size:11px;color:var(--muted);line-height:1.35;margin-top:3px}
 .pstats{display:flex;align-items:center;gap:14px;margin-top:8px}
 .pstats .col .l{font-size:11px;color:var(--muted)}
 .pstats .col .n{font-size:19px;font-weight:800;margin-top:1px}
@@ -122,19 +129,21 @@ textarea{min-height:76px;resize:vertical;line-height:1.35}
 .ritem .num .b{font-size:11px;margin-top:2px}
 .ritem .tm{font-size:11px;color:var(--muted);width:38px;text-align:right;flex-shrink:0}
 /* team */
-.team{display:flex;gap:16px;margin-top:14px;overflow-x:auto}
-.mem{text-align:center;flex-shrink:0;width:64px}
+.team{display:flex;gap:10px;margin-top:14px;overflow:visible}
+.mem{text-align:center;flex:1;min-width:0}
 .mem .av{width:46px;height:46px;border-radius:50%;background:#111214;color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;margin:0 auto;position:relative}
 .mem .av .st{position:absolute;bottom:0;right:0;width:13px;height:13px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff}
 .mem .av .st.done{background:#111214}
 .mem .av .st.done::after{content:"✓"}
 .mem .av .st.pend{background:#d3d3d7}
-.mem .nm{font-size:11px;font-weight:600;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mem .nm{font-size:11px;font-weight:600;margin-top:5px;line-height:1.2;white-space:normal;overflow-wrap:anywhere;min-height:26px}
 .mem .ct{font-size:12px;font-weight:800;margin-top:1px}
 /* bottom bar */
 .bottombar{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border-top:1px solid var(--border);padding:10px 16px 14px;display:none;z-index:40;border-radius:18px 18px 0 0;box-shadow:var(--shadow-up)}
 .bottombar.show{display:block}
 .bottombar .row .btn{margin-top:0}
+.bottombar .btn{display:flex;align-items:center;justify-content:center;gap:8px}
+.btn .action-icon{font-size:15px;line-height:1;font-weight:800;display:inline-block;min-width:16px;text-align:center}
 /* modal */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(16,17,20,.42);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:50;align-items:flex-end;max-width:480px;margin:0 auto}
 .modal-bg.open{display:flex}
@@ -257,6 +266,7 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;font-s
         <div style="flex:1;min-width:0">
           <div class="nm" id="pName"></div>
           <div class="sku" id="pSku"></div>
+          <div class="specs" id="pSpecs"></div>
           <div class="pstats">
             <div class="col"><div class="l">SL trong Misa</div><div class="n" id="pMisa">0</div></div>
             <div class="sep"></div>
@@ -296,7 +306,7 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;font-s
 
   <!-- quét gần nhất -->
   <div class="card">
-    <div class="ctitle"><div class="ico">🕐</div>Quét gần nhất<span class="link" onclick="showDetail()">Xem tất cả ›</span></div>
+    <div class="ctitle"><div class="ico">🕐</div>Quét gần nhất<span class="link" onclick="showDetail()">Xem tất cả</span></div>
     <div id="countedList" style="margin-top:6px"></div>
   </div>
 
@@ -310,6 +320,7 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;font-s
 <!-- DETAIL -->
 <div class="screen" id="scr-detail">
   <div class="card">
+    <button class="detail-back" type="button" onclick="goBack()" aria-label="Quay lại màn hình kiểm kê">Quay lại</button>
     <div class="ctitle"><div class="ico">🔍</div>Chi tiết – <span id="dtWhName"></span></div>
     <input id="dtSearch" placeholder="Tìm theo mã hoặc tên sản phẩm…" style="margin-top:12px" oninput="renderDetail()">
     <div class="filterchips" id="dtFilters">
@@ -336,10 +347,10 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;font-s
 <!-- bottom bar -->
 <div class="bottombar" id="bar">
   <div class="row">
-    <button class="btn outline" onclick="goHome()">Tạm dừng</button>
-    <button class="btn" id="btnDone" onclick="markDone()">Hoàn thành</button>
+    <button class="btn outline" onclick="goHome()"><span class="action-icon" aria-hidden="true">⏸</span>Tạm dừng</button>
+    <button class="btn" id="btnDone" onclick="markDone()"><span class="action-icon" aria-hidden="true">✓</span><span class="action-label">Hoàn thành</span></button>
   </div>
-  <button class="btn danger" id="btnFinish" style="display:none;margin-top:10px" onclick="finishAll()">Kết thúc kiểm kho</button>
+  <button class="btn danger" id="btnFinish" style="display:none;margin-top:10px" onclick="finishAll()"><span class="action-icon" aria-hidden="true">⏹</span><span class="action-label">Kết thúc kiểm kho</span></button>
 </div>
 
 <!-- product modal -->
@@ -643,13 +654,15 @@ function renderCount(){
   /* nút */
   const meDone=!!session.done[currentUser.id];
   $('btnDone').classList.toggle('outline',meDone);
+  $('btnDone').classList.toggle('continue',meDone);
   $('btnDone').classList.toggle('gray',false);
-  $('btnDone').textContent=meDone?'Tiếp tục kiểm':'Hoàn thành';
+  $('btnDone').querySelector('.action-icon').textContent=meDone?'▶':'✓';
+  $('btnDone').querySelector('.action-label').textContent=meDone?'Tiếp tục kiểm':'Hoàn thành';
   if(currentUser.id===session.leader){
     /* Leader/Kế toán trưởng luôn được kết thúc – kể cả khi NV chưa hoàn thành (sẽ có cảnh báo xác nhận) */
     const notDone=session.team.filter(u=>!session.done[u]);
     $('btnFinish').disabled=false;
-    $('btnFinish').textContent=notDone.length
+    $('btnFinish').querySelector('.action-label').textContent=notDone.length
       ?('Kết thúc (còn '+notDone.length+' người chưa xong)')
       :'Kết thúc kiểm kho';
   }
@@ -661,6 +674,7 @@ function renderProductPanel(){
   const p=prodByCode(lastProdCode),c=session.counts[p.code],total=c?c.total:0,misa=session.misa[p.code];
   $('pImg').textContent=skuNum(p.code);$('pName').textContent=p.name;
   $('pSku').textContent='SKU: '+p.code+' · ĐVT: '+p.unit;
+  $('pSpecs').textContent='Thông số kỹ thuật: '+p.desc;
   $('pMisa').textContent=misa;$('pCounted').textContent=total;$('pTotal').textContent=total;
   const pill=$('pPill');
   if(total===misa){pill.className='pill ok';pill.textContent='Khớp';}
