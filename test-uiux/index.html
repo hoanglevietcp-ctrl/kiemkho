@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="vi">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111827">
+  <title>Kiểm kho thử nghiệm · CRM</title>
+  <style>
+    :root{--ink:#172033;--muted:#667085;--line:#e5e7eb;--bg:#f5f7fa;--card:#fff;--accent:#f5b700;--ok:#138a57;--bad:#b42318}
+    *{box-sizing:border-box} body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:var(--bg);color:var(--ink)}
+    .top{background:#111827;color:#fff;padding:28px 20px 22px}.wrap{max-width:860px;margin:auto}.badge{display:inline-block;background:rgba(245,183,0,.17);color:#ffe284;border:1px solid rgba(255,226,132,.3);padding:5px 10px;border-radius:99px;font-size:12px;font-weight:750}.top h1{font-size:24px;margin:12px 0 4px}.top p{color:#d0d5dd;margin:0;font-size:14px;line-height:1.5}
+    main{max-width:860px;margin:0 auto;padding:20px}.notice{background:#fffae8;border:1px solid #f7df94;color:#705500;padding:12px 14px;border-radius:12px;font-size:13px;line-height:1.45;margin-bottom:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:18px;box-shadow:0 2px 7px rgba(16,24,40,.03)}
+    .search{display:flex;gap:10px;align-items:center}.search input{height:49px;border:1px solid #cbd5e1;border-radius:11px;padding:0 14px;font-size:16px;flex:1;min-width:0}.search input:focus{outline:3px solid rgba(245,183,0,.25);border-color:#d7a200}button{height:49px;border:0;border-radius:11px;padding:0 16px;font-size:14px;font-weight:750;cursor:pointer;background:var(--ink);color:white}button.alt{background:#f1f5f9;color:#344054;border:1px solid #d0d5dd}.hint{margin:10px 2px 0;color:var(--muted);font-size:12px}.camera{display:none;margin-top:14px;border-radius:14px;overflow:hidden;background:#111}.camera.show{display:block}#reader{min-height:230px}.status{margin:13px 2px 0;font-size:13px;color:var(--muted)}
+    .product{display:none;margin-top:16px}.product.show{display:block}.product-grid{display:grid;grid-template-columns:116px 1fr;gap:20px}.image{height:116px;border-radius:14px;background:linear-gradient(145deg,#eef2f6,#d9e1ea);display:flex;flex-direction:column;align-items:center;justify-content:center;color:#667085;text-align:center;font-size:12px;line-height:1.35}.image span{font-size:34px;margin-bottom:6px}.product h2{font-size:20px;line-height:1.3;margin:0 0 5px}.sku{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;color:#475467;font-size:13px;margin-bottom:14px}.label{color:#667085;text-transform:uppercase;letter-spacing:.07em;font-size:11px;font-weight:800;margin:13px 0 4px}.spec{line-height:1.5;font-size:14px}.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:16px}.fact{border:1px solid var(--line);padding:10px;border-radius:10px}.fact b{display:block;font-size:16px}.fact small{color:var(--muted);font-size:11px}.empty{display:block;margin-top:16px;color:var(--muted);text-align:center;padding:36px 12px;font-size:14px}.empty.hide{display:none}.notfound{display:none;margin-top:16px;border:1px solid #fecdca;background:#fff5f4;color:var(--bad);padding:14px;border-radius:12px;font-size:14px}.notfound.show{display:block}.footer{font-size:12px;color:#667085;text-align:center;margin:20px 0 6px}.loading{color:var(--muted);margin:12px 2px;font-size:13px}
+    @media(max-width:560px){.top{padding:22px 16px 18px}main{padding:14px}.search{flex-wrap:wrap}.search input{width:100%}.search button{flex:1}.product-grid{grid-template-columns:82px 1fr;gap:13px}.image{height:82px}.facts{grid-template-columns:1fr 1fr}.facts .fact:last-child{grid-column:span 2}}
+  </style>
+</head>
+<body>
+  <header class="top"><div class="wrap"><span class="badge">DỮ LIỆU THỬ NGHIỆM</span><h1>Tra cứu kiểm kho từ CRM</h1><p>Quét barcode hoặc nhập mã hàng để kiểm tra thông tin sản phẩm.</p></div></header>
+  <main>
+    <div class="notice">Dữ liệu xuất từ CRM lúc 11:31, 25/07/2026, chỉ dùng để test giao diện. Không dùng kết quả tại đây làm số liệu kiểm kê chính thức.</div>
+    <section class="card">
+      <div class="search"><input id="code" autocomplete="off" placeholder="Quét hoặc nhập mã hàng hóa…" aria-label="Mã hàng hóa"><button id="lookup">Tra cứu</button><button id="cameraButton" class="alt">Mở camera</button></div>
+      <p class="hint">Ví dụ: <b>ABI-TLA-00001</b>. Barcode phải trả về đúng mã hàng hóa CRM hoặc cần có bảng quy đổi barcode → SKU.</p>
+      <div id="camera" class="camera"><div id="reader"></div></div>
+      <p id="loading" class="loading">Đang nạp danh mục CRM…</p>
+      <p id="status" class="status" aria-live="polite"></p>
+      <div id="notfound" class="notfound">Không tìm thấy mã này trong dữ liệu CRM thử nghiệm. Hãy kiểm tra barcode có trùng với “Mã hàng hóa” hay không.</div>
+      <div id="empty" class="empty">Chưa có sản phẩm nào được tra cứu.</div>
+      <article id="product" class="product"><div class="product-grid"><div class="image"><span>◫</span>Chưa có ảnh<br>từ CRM</div><div><h2 id="name"></h2><div id="sku" class="sku"></div><div id="specBlock"><div class="label">Thông số kỹ thuật <span style="font-weight:500;text-transform:none;letter-spacing:0">(trích tạm từ tên CRM)</span></div><div id="specs" class="spec"></div></div></div></div><div class="facts"><div class="fact"><b id="stock"></b><small>Tồn CRM</small></div><div class="fact"><b id="unit"></b><small>Đơn vị tính</small></div><div class="fact"><b id="origin"></b><small>Nguồn gốc</small></div></div></article>
+    </section>
+    <p class="footer">Trang thử nghiệm độc lập · nanoHome kiểm kho</p>
+  </main>
+  <script src="https://unpkg.com/html5-qrcode" defer></script>
+  <script>
+    const el=id=>document.getElementById(id); let products=[], scanner=null;
+    const formatNumber=v=>new Intl.NumberFormat('vi-VN',{maximumFractionDigits:2}).format(v);
+    function findProduct(value){const code=String(value||'').trim().toUpperCase();return products.find(p=>p.sku.toUpperCase()===code);}
+    function showProduct(item){el('empty').classList.add('hide');el('notfound').classList.remove('show');el('product').classList.add('show');el('name').textContent=item.name;el('sku').textContent='SKU: '+item.sku;el('specs').textContent=item.specs||'CRM chưa có thông số tách riêng.';el('specBlock').style.display=item.specs?'block':'none';el('stock').textContent=formatNumber(item.stock);el('unit').textContent=item.unit||'—';el('origin').textContent=item.origin||'—';el('status').textContent='Đã tìm thấy sản phẩm trong danh mục CRM.';}
+    function lookup(value=el('code').value){const item=findProduct(value);el('product').classList.remove('show');if(!value.trim()){el('notfound').classList.remove('show');el('empty').classList.remove('hide');el('status').textContent='';return;}if(item)showProduct(item);else{el('empty').classList.add('hide');el('notfound').classList.add('show');el('status').textContent='';}}
+    async function toggleCamera(){const box=el('camera');if(scanner){await scanner.stop().catch(()=>{});scanner.clear();scanner=null;box.classList.remove('show');el('cameraButton').textContent='Mở camera';return;}if(!window.Html5Qrcode){el('status').textContent='Chưa nạp được bộ quét camera. Bạn vẫn có thể nhập SKU.';return;}box.classList.add('show');el('cameraButton').textContent='Đóng camera';scanner=new Html5Qrcode('reader');try{await scanner.start({facingMode:'environment'},{fps:10,qrbox:{width:230,height:130}},decoded=>{el('code').value=decoded;lookup(decoded);toggleCamera();},()=>{});}catch(error){el('status').textContent='Không mở được camera. Hãy cấp quyền camera hoặc nhập SKU.';box.classList.remove('show');scanner=null;el('cameraButton').textContent='Mở camera';}}
+    el('lookup').addEventListener('click',()=>lookup());el('code').addEventListener('keydown',event=>{if(event.key==='Enter')lookup();});el('cameraButton').addEventListener('click',toggleCamera);
+    fetch('./products.json').then(r=>r.json()).then(data=>{products=data.items;el('loading').textContent=`Đã nạp ${products.length.toLocaleString('vi-VN')} mã hàng từ CRM.`;}).catch(()=>{el('loading').textContent='Không thể nạp dữ liệu CRM.';});
+  </script>
+</body>
+</html>

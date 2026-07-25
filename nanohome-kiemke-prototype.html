@@ -42,15 +42,22 @@ header.app{background:rgba(15,15,16,.92);backdrop-filter:saturate(180%) blur(12p
 .btn.yellow{background:var(--accent);color:#fff}
 .btn.outline{background:#fff;color:#111214;border:1.5px solid #dedee0}
 .btn.gray{background:#efeff0;color:#111214}
-.btn.danger{background:#fff;color:var(--bad);border:1.5px solid #e3c9c5}
+.btn.danger{background:var(--bad);color:#fff;border:1.5px solid var(--bad)}
+.btn.continue{background:#1976d2;color:#fff;border:1.5px solid #1976d2}
 .btn:disabled{opacity:.35}
 .card{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:16px;margin-top:12px;box-shadow:var(--shadow-sm)}
 .ctitle{display:flex;align-items:center;gap:10px;font-size:12px;font-weight:700;letter-spacing:.3px;text-transform:none}
 .ctitle .ico{width:28px;height:28px;border-radius:9px;background:#f1f1f2;color:#111214;display:flex;align-items:center;justify-content:center;font-size:14px;flex-shrink:0}
-.ctitle .link{margin-left:auto;font-size:12px;font-weight:600;letter-spacing:0;text-transform:none;color:var(--muted);cursor:pointer}
+.ctitle .link{margin:-8px -8px -8px auto;min-height:40px;padding:8px;display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:650;letter-spacing:0;text-transform:none;color:var(--muted);cursor:pointer;white-space:nowrap;border-radius:10px}
+.ctitle .link::after{content:'›';width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#f1f1f2;color:#55565b;font-size:19px;font-weight:500;line-height:1}
+.ctitle .link:active{background:#f1f1f2}
+.detail-back{min-height:40px;margin:-8px 0 4px -8px;padding:8px;display:inline-flex;align-items:center;gap:6px;border:0;border-radius:10px;background:transparent;color:var(--muted);font-size:12px;font-weight:650;cursor:pointer;white-space:nowrap}
+.detail-back::before{content:'‹';width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;border-radius:50%;background:#f1f1f2;color:#55565b;font-size:19px;font-weight:500;line-height:1}
+.detail-back:active{background:#f1f1f2}
 label{font-size:11px;font-weight:600;color:var(--muted);display:block;margin:12px 0 5px;text-transform:none;letter-spacing:.2px}
-input,select{width:100%;padding:12px 13px;border:1.5px solid var(--border);border-radius:12px;font-size:16px;background:#fff;transition:border-color .15s ease}
-input:focus,select:focus{outline:none;border-color:#111}
+input,select,textarea{width:100%;padding:12px 13px;border:1.5px solid var(--border);border-radius:12px;font-size:16px;background:#fff;transition:border-color .15s ease}
+input:focus,select:focus,textarea:focus{outline:none;border-color:#111}
+textarea{min-height:76px;resize:vertical;line-height:1.35}
 .chip{display:inline-block;padding:7px 13px;border-radius:18px;border:1.5px solid var(--border);margin:4px 4px 0 0;font-size:13px;font-weight:600;cursor:pointer;background:#fff}
 .chip.on{background:#111;color:#fff;border-color:#111}
 .row{display:flex;gap:10px}
@@ -91,6 +98,7 @@ input:focus,select:focus{outline:none;border-color:#111}
 .ppanel .thumb{width:74px;height:74px;border:1px solid var(--border);border-radius:14px;background:#f4f4f5;display:flex;align-items:center;justify-content:center;font-size:38px;flex-shrink:0}
 .ppanel .nm{font-size:17px;font-weight:800;line-height:1.25}
 .ppanel .sku{font-size:12px;color:var(--muted);margin-top:3px}
+.ppanel .specs{font-size:11px;color:var(--muted);line-height:1.35;margin-top:3px}
 .pstats{display:flex;align-items:center;gap:14px;margin-top:8px}
 .pstats .col .l{font-size:11px;color:var(--muted)}
 .pstats .col .n{font-size:19px;font-weight:800;margin-top:1px}
@@ -121,19 +129,21 @@ input:focus,select:focus{outline:none;border-color:#111}
 .ritem .num .b{font-size:11px;margin-top:2px}
 .ritem .tm{font-size:11px;color:var(--muted);width:38px;text-align:right;flex-shrink:0}
 /* team */
-.team{display:flex;gap:16px;margin-top:14px;overflow-x:auto}
-.mem{text-align:center;flex-shrink:0;width:64px}
+.team{display:flex;gap:10px;margin-top:14px;overflow:visible}
+.mem{text-align:center;flex:1;min-width:0}
 .mem .av{width:46px;height:46px;border-radius:50%;background:#111214;color:#fff;font-weight:700;font-size:15px;display:flex;align-items:center;justify-content:center;margin:0 auto;position:relative}
 .mem .av .st{position:absolute;bottom:0;right:0;width:13px;height:13px;border-radius:50%;border:2px solid #fff;display:flex;align-items:center;justify-content:center;font-size:8px;color:#fff}
 .mem .av .st.done{background:#111214}
 .mem .av .st.done::after{content:"✓"}
 .mem .av .st.pend{background:#d3d3d7}
-.mem .nm{font-size:11px;font-weight:600;margin-top:5px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mem .nm{font-size:11px;font-weight:600;margin-top:5px;line-height:1.2;white-space:normal;overflow-wrap:anywhere;min-height:26px}
 .mem .ct{font-size:12px;font-weight:800;margin-top:1px}
 /* bottom bar */
 .bottombar{position:fixed;bottom:0;left:0;right:0;max-width:480px;margin:0 auto;background:rgba(255,255,255,.82);backdrop-filter:saturate(180%) blur(16px);-webkit-backdrop-filter:saturate(180%) blur(16px);border-top:1px solid var(--border);padding:10px 16px 14px;display:none;z-index:40;border-radius:18px 18px 0 0;box-shadow:var(--shadow-up)}
 .bottombar.show{display:block}
 .bottombar .row .btn{margin-top:0}
+.bottombar .btn{display:flex;align-items:center;justify-content:center;gap:8px}
+.btn .action-icon{font-size:15px;line-height:1;font-weight:800;display:inline-block;min-width:16px;text-align:center}
 /* modal */
 .modal-bg{display:none;position:fixed;inset:0;background:rgba(16,17,20,.42);backdrop-filter:blur(3px);-webkit-backdrop-filter:blur(3px);z-index:50;align-items:flex-end;max-width:480px;margin:0 auto}
 .modal-bg.open{display:flex}
@@ -147,6 +157,12 @@ input:focus,select:focus{outline:none;border-color:#111}
 .qtyrow{display:flex;gap:12px;align-items:center;margin-top:16px}
 .qtyrow button{width:46px;height:46px;border-radius:12px;border:1.5px solid #dedee0;background:#fff;font-size:22px;cursor:pointer}
 .qtyrow input{text-align:center;font-size:22px;font-weight:800;height:46px}
+.defect-box{margin-top:18px;padding:12px;border:1px solid #ead0cd;border-radius:14px;background:#fff8f7}
+.checkline{display:flex;align-items:center;gap:9px;margin:0;color:var(--bad);font-size:14px;font-weight:750;cursor:pointer}
+.checkline input[type=checkbox]{appearance:auto;-webkit-appearance:checkbox;width:18px;height:18px;margin:0;padding:0;accent-color:var(--bad);flex:0 0 auto}
+.defect-fields{margin-top:10px;padding-top:2px}
+.defect-summary{margin-top:10px;padding:9px 10px;border-radius:10px;background:var(--badbg);color:var(--bad);font-size:12px;line-height:1.45}
+.defect-tag{color:var(--bad);font-size:11px;font-weight:750;margin-top:3px}
 /* table */
 table{width:100%;border-collapse:collapse;font-size:12px;margin-top:10px}
 th,td{padding:8px 6px;border-bottom:1px solid var(--border);text-align:left}
@@ -250,6 +266,7 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;font-s
         <div style="flex:1;min-width:0">
           <div class="nm" id="pName"></div>
           <div class="sku" id="pSku"></div>
+          <div class="specs" id="pSpecs"></div>
           <div class="pstats">
             <div class="col"><div class="l">SL trong Misa</div><div class="n" id="pMisa">0</div></div>
             <div class="sep"></div>
@@ -289,7 +306,7 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;font-s
 
   <!-- quét gần nhất -->
   <div class="card">
-    <div class="ctitle"><div class="ico">🕐</div>Quét gần nhất<span class="link" onclick="showDetail()">Xem tất cả ›</span></div>
+    <div class="ctitle"><div class="ico">🕐</div>Quét gần nhất<span class="link" onclick="showDetail()">Xem tất cả</span></div>
     <div id="countedList" style="margin-top:6px"></div>
   </div>
 
@@ -303,6 +320,7 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;font-s
 <!-- DETAIL -->
 <div class="screen" id="scr-detail">
   <div class="card">
+    <button class="detail-back" type="button" onclick="goBack()" aria-label="Quay lại màn hình kiểm kê">Quay lại</button>
     <div class="ctitle"><div class="ico">🔍</div>Chi tiết – <span id="dtWhName"></span></div>
     <input id="dtSearch" placeholder="Tìm theo mã hoặc tên sản phẩm…" style="margin-top:12px" oninput="renderDetail()">
     <div class="filterchips" id="dtFilters">
@@ -329,10 +347,10 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;font-s
 <!-- bottom bar -->
 <div class="bottombar" id="bar">
   <div class="row">
-    <button class="btn outline" onclick="goHome()">Tạm dừng</button>
-    <button class="btn" id="btnDone" onclick="markDone()">Hoàn thành</button>
+    <button class="btn outline" onclick="goHome()"><span class="action-icon" aria-hidden="true">⏸</span>Tạm dừng</button>
+    <button class="btn" id="btnDone" onclick="markDone()"><span class="action-icon" aria-hidden="true">✓</span><span class="action-label">Hoàn thành</span></button>
   </div>
-  <button class="btn danger" id="btnFinish" style="display:none;margin-top:10px" onclick="finishAll()">Kết thúc kiểm kho</button>
+  <button class="btn danger" id="btnFinish" style="display:none;margin-top:10px" onclick="finishAll()"><span class="action-icon" aria-hidden="true">⏹</span><span class="action-label">Kết thúc kiểm kho</span></button>
 </div>
 
 <!-- product modal -->
@@ -358,6 +376,17 @@ input[type=date],input[type=time]{-webkit-appearance:none;appearance:none;font-s
     <div class="row">
       <button class="btn gray" onclick="saveModalCount(-1)">Trừ bớt</button>
       <button class="btn" style="margin-top:10px" onclick="saveModalCount(1)">Cộng vào</button>
+    </div>
+    <div class="defect-box">
+      <label class="checkline"><input type="checkbox" id="mDefect" onchange="toggleDefectFields()"><span>Hàng lỗi / hư hỏng</span></label>
+      <div class="defect-fields" id="mDefectFields" style="display:none">
+        <label for="mDefectNote">Mô tả lỗi ngắn gọn</label>
+        <textarea id="mDefectNote" maxlength="160" placeholder="VD: Móp vỏ, không lên nguồn…"></textarea>
+        <label for="mDefectQty">Số lượng hàng lỗi</label>
+        <input type="number" id="mDefectQty" value="1" min="1" inputmode="numeric">
+        <button class="btn danger" type="button" onclick="saveDefect()">Ghi nhận hàng lỗi</button>
+      </div>
+      <div class="defect-summary" id="mDefectList" style="display:none"></div>
     </div>
     <div id="mLeaderBox" style="display:none">
       <label style="text-align:center">Leader: đặt lại tổng chính xác</label>
@@ -432,6 +461,10 @@ function uName(id){return USERS.find(u=>u.id===id).name;}
 function initials(n){return n.split(' ').map(x=>x[0]).join('').slice(-2).toUpperCase();}
 function fmtT(ms){return new Date(ms).toLocaleTimeString('vi-VN',{hour:'2-digit',minute:'2-digit'});}
 function setHdr(t,s){$('hdrTitle').innerHTML=t;$('hdrSub').textContent=s||'';}
+function escapeHtml(v){return String(v).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
+function defectRecords(s,code){return s.defects&&Array.isArray(s.defects[code])?s.defects[code]:[];}
+function defectTotal(s,code){return defectRecords(s,code).reduce((sum,d)=>sum+(Number(d.qty)||0),0);}
+function defectNotes(s,code){return defectRecords(s,code).map(d=>d.note+' ('+d.qty+')').join('; ');}
 function cloudPayload(s){return {...s,counts:{},log:[]};}
 function applyCloudEvents(target,events){
   target.counts={};target.log=[];
@@ -599,9 +632,10 @@ function renderCount(){
   codes.slice().sort((a,b)=>(session.counts[b].lastAt||0)-(session.counts[a].lastAt||0)).slice(0,3).forEach(c=>{
     const p=prodByCode(c),cnt=session.counts[c],misa=session.misa[c],diff=cnt.total-misa;
     const st=diff===0?'<span class="diff-zero">Khớp</span>':(diff<0?`<span class="diff-neg">${diff}</span>`:`<span class="diff-pos">+${diff}</span>`);
+    const defects=defectTotal(session,c);
     const d=document.createElement('div');d.className='ritem';
     d.innerHTML=`<div class="thumb">${skuNum(p.code)}</div>
-      <div class="info"><div class="nm">${p.name}</div><div class="cd">${p.code}</div></div>
+      <div class="info"><div class="nm">${p.name}</div><div class="cd">${p.code}</div>${defects?`<div class="defect-tag">Hàng lỗi: ${defects}</div>`:''}</div>
       <div class="num"><div class="a">${cnt.total} / ${misa}</div><div class="b">${st}</div></div>
       <div class="tm">${cnt.lastAt?fmtT(cnt.lastAt):''}</div>`;
     d.onclick=()=>openModal(p);
@@ -620,13 +654,15 @@ function renderCount(){
   /* nút */
   const meDone=!!session.done[currentUser.id];
   $('btnDone').classList.toggle('outline',meDone);
+  $('btnDone').classList.toggle('continue',meDone);
   $('btnDone').classList.toggle('gray',false);
-  $('btnDone').textContent=meDone?'Tiếp tục kiểm':'Hoàn thành';
+  $('btnDone').querySelector('.action-icon').textContent=meDone?'▶':'✓';
+  $('btnDone').querySelector('.action-label').textContent=meDone?'Tiếp tục kiểm':'Hoàn thành';
   if(currentUser.id===session.leader){
     /* Leader/Kế toán trưởng luôn được kết thúc – kể cả khi NV chưa hoàn thành (sẽ có cảnh báo xác nhận) */
     const notDone=session.team.filter(u=>!session.done[u]);
     $('btnFinish').disabled=false;
-    $('btnFinish').textContent=notDone.length
+    $('btnFinish').querySelector('.action-label').textContent=notDone.length
       ?('Kết thúc (còn '+notDone.length+' người chưa xong)')
       :'Kết thúc kiểm kho';
   }
@@ -638,6 +674,7 @@ function renderProductPanel(){
   const p=prodByCode(lastProdCode),c=session.counts[p.code],total=c?c.total:0,misa=session.misa[p.code];
   $('pImg').textContent=skuNum(p.code);$('pName').textContent=p.name;
   $('pSku').textContent='SKU: '+p.code+' · ĐVT: '+p.unit;
+  $('pSpecs').textContent='Thông số kỹ thuật: '+p.desc;
   $('pMisa').textContent=misa;$('pCounted').textContent=total;$('pTotal').textContent=total;
   const pill=$('pPill');
   if(total===misa){pill.className='pill ok';pill.textContent='Khớp';}
@@ -773,9 +810,10 @@ function renderDetail(){
   rows.forEach(r=>{
     const diff=r.counted-r.misa;
     const st=r.has?(diff===0?'<span class="diff-zero">Khớp</span>':(diff<0?`<span class="diff-neg">${diff}</span>`:`<span class="diff-pos">+${diff}</span>`)):'<span class="pill gray" style="padding:3px 9px">chưa đếm</span>';
+    const defects=defectTotal(session,r.p.code);
     const d=document.createElement('div');d.className='ritem';
     d.innerHTML=`<div class="thumb">${skuNum(r.p.code)}</div>
-      <div class="info"><div class="nm">${r.p.name}</div><div class="cd">${r.p.code} · Tồn Misa: ${r.misa}</div></div>
+      <div class="info"><div class="nm">${r.p.name}</div><div class="cd">${r.p.code} · Tồn Misa: ${r.misa}</div>${defects?`<div class="defect-tag">Hàng lỗi: ${defects} · ${escapeHtml(defectNotes(session,r.p.code))}</div>`:''}</div>
       <div class="num"><div class="a">${r.counted} / ${r.misa}</div><div class="b">${st}</div></div>`;
     d.onclick=()=>openModal(r.p);
     list.appendChild(d);
@@ -791,16 +829,35 @@ function openModal(p){
   refreshModalStats();
   $('mLeaderBox').style.display=canLead(currentUser)?'block':'none';
   $('mQty').value=1;$('mSetTotal').value='';
+  $('mDefect').checked=false;$('mDefectNote').value='';$('mDefectQty').value=1;toggleDefectFields();
   $('modalBg').classList.add('open');
 }
 function closeModal(){$('modalBg').classList.remove('open');modalProd=null;}
 function bump(d){const i=$('mQty');i.value=Math.max(1,(parseInt(i.value)||1)+d);}
+function toggleDefectFields(){$('mDefectFields').style.display=$('mDefect').checked?'block':'none';}
 function refreshModalStats(){
   const cnt=session.counts[modalProd.code];
   $('mCounted').textContent=cnt?cnt.total:0;
   $('mByUser').textContent=cnt?Object.entries(cnt.byUser).map(([u,q])=>uName(u)+': '+q).join(' · '):'Chưa ai đếm mã này';
   const logs=(session.log||[]).filter(l=>l.code===modalProd.code).slice(-3).reverse();
   $('mLog').innerHTML=logs.length?('Lịch sử gần nhất:<br>'+logs.map(l=>l.at.toLocaleTimeString('vi-VN')+' – '+uName(l.uid)+': '+(l.delta>0?'+':'')+l.delta+' ('+l.type+')').join('<br>')):'';
+  const defects=defectRecords(session,modalProd.code),list=$('mDefectList');
+  list.style.display=defects.length?'block':'none';
+  list.innerHTML=defects.length?'<b>Đã ghi nhận '+defectTotal(session,modalProd.code)+' hàng lỗi:</b><br>'+defects.slice().reverse().map(d=>escapeHtml(d.note)+' · SL '+d.qty+' · '+escapeHtml(uName(d.uid))+(d.at?' · '+fmtT(d.at):'')).join('<br>'):'';
+}
+function saveDefect(){
+  if(session.status!=='active'){toast('Đợt kiểm kê đã kết thúc.');return;}
+  if(session.done[currentUser.id]){toast('Bạn đã bấm Hoàn thành.');return;}
+  const note=$('mDefectNote').value.trim(),qty=parseInt($('mDefectQty').value)||0;
+  if(!note){toast('Hãy mô tả ngắn gọn lỗi hàng');return;}
+  if(qty<=0){toast('Nhập số lượng hàng lỗi > 0');return;}
+  if(!session.defects)session.defects={};
+  if(!session.defects[modalProd.code])session.defects[modalProd.code]=[];
+  session.defects[modalProd.code].push({id:'D'+Date.now(),note,qty,uid:currentUser.id,at:Date.now()});
+  cloudSaveSession(session);
+  $('mDefect').checked=false;$('mDefectNote').value='';$('mDefectQty').value=1;toggleDefectFields();
+  renderCount();if($('scr-detail').classList.contains('active'))renderDetail();
+  refreshModalStats();toast('Đã ghi nhận '+qty+' hàng lỗi');
 }
 function saveModalCount(dir){
   if(session.status!=='active'){toast('Đợt kiểm kê đã kết thúc.');return;}
@@ -880,14 +937,14 @@ function reportRows(){
   const s=viewSession;
   return PRODUCTS.map(p=>{
     const misa=s.misa[p.code],counted=s.counts[p.code]?s.counts[p.code].total:0;
-    return {code:p.code,name:p.name,misa,counted,diff:counted-misa};
+    return {code:p.code,name:p.name,misa,counted,diff:counted-misa,defectQty:defectTotal(s,p.code),defectNote:defectNotes(s,p.code)};
   });
 }
 function renderReport(){
-  let h='<table><tr><th>Mã</th><th>Sản phẩm</th><th class="r">Misa</th><th class="r">Thực đếm</th><th class="r">Chênh</th></tr>';
+  let h='<table><tr><th>Mã</th><th>Sản phẩm</th><th class="r">Misa</th><th class="r">Thực đếm</th><th class="r">Chênh</th><th class="r">Hàng lỗi</th><th>Mô tả lỗi</th></tr>';
   reportRows().forEach(r=>{
     const d=r.diff===0?'<span class="diff-zero">0</span>':(r.diff<0?`<span class="diff-neg">${r.diff}</span>`:`<span class="diff-pos">+${r.diff}</span>`);
-    h+=`<tr><td>${r.code}</td><td>${r.name}</td><td class="r">${r.misa}</td><td class="r">${r.counted}</td><td class="r">${d}</td></tr>`;
+    h+=`<tr><td>${r.code}</td><td>${r.name}</td><td class="r">${r.misa}</td><td class="r">${r.counted}</td><td class="r">${d}</td><td class="r">${r.defectQty||'–'}</td><td>${r.defectNote?escapeHtml(r.defectNote):'–'}</td></tr>`;
   });
   $('repTable').innerHTML=h+'</table>';
 }
@@ -896,10 +953,11 @@ function exportExcel(){
   const rows=reportRows().map(r=>({
     'Mã SP':r.code,'Tên sản phẩm':r.name,'Kho':wh,'Ngày kiểm':s.date,'Giờ':s.time,
     'Tồn Misa':r.misa,'Thực đếm':r.counted,'Chênh lệch':r.diff,
+    'SL hàng lỗi':r.defectQty,'Mô tả hàng lỗi':r.defectNote,
     'Ghi chú':r.diff===0?'Khớp':(r.diff<0?'Thiếu hàng':'Thừa hàng')
   }));
   const ws=XLSX.utils.json_to_sheet(rows);
-  ws['!cols']=[{wch:8},{wch:32},{wch:20},{wch:11},{wch:7},{wch:9},{wch:9},{wch:10},{wch:12}];
+  ws['!cols']=[{wch:8},{wch:32},{wch:20},{wch:11},{wch:7},{wch:9},{wch:9},{wch:10},{wch:12},{wch:14},{wch:38}];
   const wb=XLSX.utils.book_new();
   XLSX.utils.book_append_sheet(wb,ws,'KiemKe');
   XLSX.writeFile(wb,`KiemKe_${s.whId}_${s.date}.xlsx`);
